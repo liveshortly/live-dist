@@ -1,12 +1,12 @@
 # live-dist
 
-Prebuilt release binaries for [`live`](https://liveshortly.com). No source here —
+Prebuilt release binaries for [`live`](https://github.com/liveshortly/live). No source here —
 only release assets.
 
 ## Install
 
 ```sh
-curl -fsSL https://liveshortly.com/i.sh | bash
+curl -fsSL https://raw.githubusercontent.com/liveshortly/live-dist/main/install.sh | bash
 ```
 
 Detects your platform, downloads the matching binary, verifies it against its
@@ -14,8 +14,10 @@ published `.sha256`, and puts `live` on your PATH. No Go toolchain.
 
 Pin a version with `bash -s -- --version v1.0.1`.
 
-There is a Homebrew tap, but the tap repo is not public yet, so `brew tap
-liveshortly/tap` only works if you have access to it.
+After installing, follow the [self-hosted setup instructions](https://github.com/liveshortly/live#choose-your-server).
+The installer does not sign you in. The Pocket daemon uses a key; the full web
+platform uses your operator's Google OAuth setup. Homebrew is available with
+`brew tap liveshortly/tap` and `brew install liveshortly/tap/live` once the tap is public.
 
 ## Assets
 
@@ -27,8 +29,10 @@ Every release carries `darwin`/`linux` × `amd64`/`arm64`:
 | `live-vX.Y.Z-<os>-<arch>.sha256` | SHA-256 of the **uncompressed** binary |
 | `latest.txt` | current version pointer |
 
-Mirrored at <https://liveshortly.com/install/>, which is also where `latest.txt`
-is read from — that avoids the GitHub API rate limit.
+The latest-version pointer is served at
+`https://github.com/liveshortly/live-dist/releases/latest/download/latest.txt`.
+No liveshortly.com mirror is needed. `LIVE_INSTALL_BASE` can select an
+operator-owned flat mirror when required.
 
 ## Verify by hand
 
@@ -49,6 +53,7 @@ a package manifest that checksums the downloaded file — Homebrew does — hash
 
 ## Why this repo exists
 
-`live` is developed in a private repo. Release assets on a private repo need an
-auth token to download, which would break `curl … | sh` for everyone outside the
-org. So the binaries are published here, in public, carrying no source.
+This repository keeps the existing release URLs stable while the source moves to
+open-source distribution. Source, issues, and contribution instructions live in
+[liveshortly/live](https://github.com/liveshortly/live). Installers and updates use
+GitHub directly; no managed LiveShortly website is required.
