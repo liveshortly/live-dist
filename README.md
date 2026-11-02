@@ -14,9 +14,10 @@ published `.sha256`, and puts `live` on your PATH. No Go toolchain.
 
 Pin a version with `bash -s -- --version v1.0.1`.
 
-After installing, follow the [self-hosted setup instructions](https://github.com/liveshortly/live#choose-your-server).
-The installer does not sign you in. The Pocket daemon uses a key; the full web
-platform uses your operator's Google OAuth setup. Homebrew is available with
+Then run `live login` to sign in to [liveshortly.com](https://liveshortly.com)
+(the installer does not sign you in). Self-hosting? Point
+`~/.liveshortly/host.json` at your server — see the
+[self-host setup](https://github.com/liveshortly/live#choose-your-server). Homebrew is available with
 `brew tap liveshortly/tap` and `brew install liveshortly/tap/live` once the tap is public.
 
 ## Assets
@@ -55,5 +56,5 @@ a package manifest that checksums the downloaded file — Homebrew does — hash
 
 This repository keeps the existing release URLs stable while the source moves to
 open-source distribution. Source, issues, and contribution instructions live in
-[liveshortly/live](https://github.com/liveshortly/live). Installers and updates use
-GitHub directly; no managed LiveShortly website is required.
+[liveshortly/live](https://github.com/liveshortly/live). Installers and updates download
+from GitHub directly, independent of which LiveShortly server you use.
